@@ -967,7 +967,7 @@ fieldset label:has(input:checked) {
   border: 1px solid var(--line);
   border-radius: 18px;
   background:
-    linear-gradient(135deg, rgba(12, 34, 21, 0.3), rgba(238, 246, 239, 0.3)),
+    linear-gradient(135deg, rgba(12, 34, 21, 0.18), rgba(238, 246, 239, 0.16)),
     url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=78")
       center / cover;
 }
@@ -984,9 +984,9 @@ fieldset label:has(input:checked) {
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.5), rgba(247, 251, 247, 0.78) 58%, rgba(235, 244, 235, 0.88)),
-    linear-gradient(135deg, rgba(15, 36, 24, 0.1), rgba(255, 255, 255, 0.68));
-  backdrop-filter: blur(3px) saturate(1.08);
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.26), rgba(247, 251, 247, 0.5) 58%, rgba(235, 244, 235, 0.64)),
+    linear-gradient(135deg, rgba(15, 36, 24, 0.08), rgba(255, 255, 255, 0.36));
+  backdrop-filter: blur(1px) saturate(1.16);
 }
 
 .map-route-line {
