@@ -192,7 +192,10 @@ export default function BloomTrailApp() {
         </div>
         <div className="hero-content">
           <p className="hero-label">BloomTrail</p>
-          <h1>국내 수목원 맞춤 관람 코스 추천 서비스</h1>
+          <h1>
+            <span>국내 수목원 맞춤 관람</span>
+            <span>코스 추천 서비스</span>
+          </h1>
           <p>전국 주요 수목원을 검색하고 방문 시간, 관심 테마, 동행 유형에 맞는 코스를 바로 확인해 보세요.</p>
           <a className="hero-button" href="#arboretum-search">
             수목원 검색 시작하기

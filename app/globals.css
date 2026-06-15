@@ -254,6 +254,10 @@ button {
   letter-spacing: -0.055em;
 }
 
+.hero h1 span {
+  display: block;
+}
+
 .hero .hero-label {
   color: #cae3ce;
 }
