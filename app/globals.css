@@ -521,6 +521,34 @@ button {
   transform: translateY(-2px);
 }
 
+.saved-route-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.delete-route-button {
+  min-height: 40px;
+  padding: 0 15px;
+  color: #8b2d2d;
+  font-weight: 900;
+  border: 1px solid #e6c7c7;
+  border-radius: 12px;
+  background: #fff7f5;
+}
+
+.delete-route-button:hover:not(:disabled) {
+  color: var(--white);
+  border-color: #9d3434;
+  background: #9d3434;
+}
+
+.delete-route-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
 .arboretum-card h3,
 .spot-card h3,
 .saved-route-card h3 {
