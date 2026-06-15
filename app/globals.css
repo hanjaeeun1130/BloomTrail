@@ -967,8 +967,8 @@ fieldset label:has(input:checked) {
   border: 1px solid var(--line);
   border-radius: 18px;
   background:
-    linear-gradient(135deg, rgba(247, 251, 247, 0.86), rgba(238, 246, 239, 0.78)),
-    url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1500&q=72")
+    linear-gradient(135deg, rgba(12, 34, 21, 0.3), rgba(238, 246, 239, 0.3)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=78")
       center / cover;
 }
 
@@ -984,9 +984,9 @@ fieldset label:has(input:checked) {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(247, 251, 247, 0.74)),
-    rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(5px);
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.5), rgba(247, 251, 247, 0.78) 58%, rgba(235, 244, 235, 0.88)),
+    linear-gradient(135deg, rgba(15, 36, 24, 0.1), rgba(255, 255, 255, 0.68));
+  backdrop-filter: blur(3px) saturate(1.08);
 }
 
 .map-route-line {
@@ -1024,9 +1024,9 @@ fieldset label:has(input:checked) {
   font-weight: 900;
   border: 2px solid #d5e4ce;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(2px);
-  box-shadow: var(--soft-shadow);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 16px 36px rgba(14, 36, 24, 0.12);
 }
 
 .map-node::after {
