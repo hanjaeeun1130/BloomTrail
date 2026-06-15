@@ -52,6 +52,10 @@ function findZoneName(arboretum: Arboretum, zoneId: string) {
   return arboretum.zones.find((zone) => zone.id === zoneId)?.name || zoneId;
 }
 
+function getNaverMapSearchUrl(arboretum: Arboretum) {
+  return `https://map.naver.com/p/search/${encodeURIComponent(`${arboretum.name} ${arboretum.address}`)}`;
+}
+
 function findBestRoute(arboretum: Arboretum, visitTime: number, theme: string, companion: string) {
   const exactRoute = arboretum.routes.find(
     (route) =>
@@ -302,10 +306,20 @@ export default function BloomTrailApp() {
         <p className="card-region">{selectedArboretum.region}</p>
         <span className="operator-badge">{selectedArboretum.operatorType} 수목원</span>
         <p>{selectedArboretum.description}</p>
-        <a className="source-link" href={selectedArboretum.sourceUrl} target="_blank" rel="noreferrer">
-          참고 자료: {selectedArboretum.sourceLabel}
-        </a>
+        <div className="quick-link-row">
+          <a className="source-link" href={selectedArboretum.sourceUrl} target="_blank" rel="noreferrer">
+            참고 자료: {selectedArboretum.sourceLabel}
+          </a>
+          <a className="map-link-button" href={getNaverMapSearchUrl(selectedArboretum)} target="_blank" rel="noreferrer">
+            네이버 지도에서 위치 보기
+          </a>
+        </div>
         <div className="detail-grid">
+          <article>
+            <span>위치 정보</span>
+            <p className="address-text">{selectedArboretum.address}</p>
+            <p>{selectedArboretum.locationNote}</p>
+          </article>
           <article>
             <span>추천 포인트</span>
             <ul>
@@ -318,16 +332,16 @@ export default function BloomTrailApp() {
             <span>관람 힌트</span>
             <p>{selectedArboretum.visitTip}</p>
           </article>
-          <article>
-            <span>검색 키워드</span>
-            <div className="keyword-cloud">
-              {selectedArboretum.aliases.slice(0, 8).map((alias) => (
-                <button type="button" key={alias} onClick={() => setKeyword(alias)}>
-                  {alias}
-                </button>
-              ))}
-            </div>
-          </article>
+        </div>
+        <div className="keyword-strip">
+          <span>검색 키워드</span>
+          <div className="keyword-cloud">
+            {selectedArboretum.aliases.slice(0, 10).map((alias) => (
+              <button type="button" key={alias} onClick={() => setKeyword(alias)}>
+                {alias}
+              </button>
+            ))}
+          </div>
         </div>
         <div className="zone-list">
           {selectedArboretum.zones.map((zone) => (
@@ -470,9 +484,19 @@ export default function BloomTrailApp() {
             공식 홈페이지의 안내도와 수목원 소개 정보를 참고해 내부 구역을 단순화한 도식 지도입니다.
             실제 지도 이미지를 복사하지 않고 구역 관계를 노드형으로 표현합니다.
           </p>
-          <a className="source-link" href={selectedArboretum.sourceUrl} target="_blank" rel="noreferrer">
-            {selectedArboretum.name} 공식 자료 보기
-          </a>
+          <div className="quick-link-row">
+            <a
+              className="source-link"
+              href={selectedArboretum.mapReferenceUrl || selectedArboretum.sourceUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {selectedArboretum.mapReferenceLabel || `${selectedArboretum.name} 공식 자료 보기`}
+            </a>
+            <a className="map-link-button" href={getNaverMapSearchUrl(selectedArboretum)} target="_blank" rel="noreferrer">
+              네이버 지도 위치 열기
+            </a>
+          </div>
         </div>
         {selectedArboretum.mapImageUrl && !mapImageFailed ? (
           <div className="official-map-panel">
@@ -487,6 +511,13 @@ export default function BloomTrailApp() {
             </div>
           </div>
         ) : (
+          <>
+          <div className="map-summary-card">
+            <strong>{selectedArboretum.name} 구역 구성</strong>
+            <span>
+              {selectedArboretum.zones.map((zone) => zone.name).join(" · ")}
+            </span>
+          </div>
           <div className="map-area">
             <div className="map-route-line" aria-hidden="true" />
             {selectedArboretum.zones.map((zone, index) => (
@@ -500,6 +531,7 @@ export default function BloomTrailApp() {
               </article>
             ))}
           </div>
+          </>
         )}
       </section>
 
