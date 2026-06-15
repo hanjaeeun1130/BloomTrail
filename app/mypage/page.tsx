@@ -38,7 +38,6 @@ export default async function MyPage() {
       <div className="section-heading">
         <p className="section-label">My BloomTrail</p>
         <h1>내가 저장한 관람 코스</h1>
-        <p>RLS 정책과 현재 로그인 세션을 기준으로 본인의 저장 코스만 조회합니다.</p>
       </div>
 
       {error && <p className="form-message">저장 코스를 불러오지 못했습니다. Supabase 설정을 확인해 주세요.</p>}
