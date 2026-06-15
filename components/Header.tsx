@@ -14,10 +14,6 @@ export default async function Header() {
 
   return (
     <header className="site-header">
-      <div className="government-strip">
-        <span>이 서비스는 국내 수목원 공개 정보를 바탕으로 만든 BloomTrail 과제용 안내 서비스입니다.</span>
-        <span>한국어</span>
-      </div>
       <nav className="navbar" aria-label="주요 메뉴">
         <Link className="logo" href="/">
           <span className="logo-symbol">BT</span>
