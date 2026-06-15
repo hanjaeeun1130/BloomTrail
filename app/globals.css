@@ -295,6 +295,69 @@ button {
   z-index: 2;
 }
 
+.national-status {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.national-status h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.6rem, 3vw, 2.35rem);
+  letter-spacing: -0.04em;
+}
+
+.national-status p:not(.section-label) {
+  max-width: 760px;
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.national-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.national-stat-grid article {
+  padding: 18px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(238, 247, 231, 0.72), rgba(255, 255, 255, 0.92)),
+    var(--white);
+}
+
+.national-stat-grid span,
+.national-stat-grid strong {
+  display: block;
+}
+
+.national-stat-grid span {
+  color: var(--green-700);
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.national-stat-grid strong {
+  margin-top: 5px;
+  color: var(--green-950);
+  font-size: clamp(1.65rem, 3vw, 2.3rem);
+  line-height: 1.1;
+}
+
+.national-stat-grid p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
 .section-heading {
   margin-bottom: 24px;
 }
@@ -323,6 +386,30 @@ button {
   padding: 10px;
   border: 3px solid var(--green-850);
   background: var(--white);
+}
+
+.operator-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 14px;
+}
+
+.operator-filter button {
+  min-height: 38px;
+  padding: 0 15px;
+  color: var(--green-850);
+  font-weight: 900;
+  border: 1px solid #cddfc5;
+  border-radius: 999px;
+  background: var(--white);
+}
+
+.operator-filter button.active,
+.operator-filter button:hover {
+  color: var(--white);
+  border-color: var(--green-850);
+  background: var(--green-850);
 }
 
 .search-control input {
@@ -399,6 +486,20 @@ button {
 .route-meta {
   color: var(--green-700);
   font-weight: 900;
+}
+
+.operator-badge {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 28px;
+  align-items: center;
+  margin: 0 0 10px;
+  padding: 4px 10px;
+  color: var(--white);
+  font-size: 0.82rem;
+  font-weight: 900;
+  border-radius: 999px;
+  background: var(--green-850);
 }
 
 .theme-tags {
@@ -974,9 +1075,15 @@ time {
   .spot-card-list,
   .saved-route-grid,
   .zone-list,
+  .national-stat-grid,
   .detail-grid,
   .course-preview-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .national-status {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .recommend-form {
@@ -1057,6 +1164,7 @@ time {
   .spot-card-list,
   .saved-route-grid,
   .zone-list,
+  .national-stat-grid,
   .detail-grid,
   .course-preview-grid,
   .knowledge-card-grid,

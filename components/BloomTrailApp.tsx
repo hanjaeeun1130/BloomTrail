@@ -8,6 +8,13 @@ import { createBrowserSupabaseClient, isSupabaseConfigured } from "@/lib/supabas
 const visitTimes = [30, 60, 90];
 const themes = ["꽃", "단풍", "숲길", "희귀식물", "사진", "휴식"];
 const companions = ["혼자", "친구", "가족", "아이와 함께"];
+const operatorTypes = ["전체", "국립", "공립", "사립", "학교"] as const;
+const nationalStats = [
+  { label: "전체 등록 수목원", value: "73개소", detail: "2025년 6월 말 기준" },
+  { label: "국립 수목원", value: "4개소", detail: "국가 단위 식물자원 보전" },
+  { label: "공립 수목원", value: "37개소", detail: "지자체 중심 자연학습·휴식 공간" },
+  { label: "사립·학교 수목원", value: "32개소", detail: "사립 29개소, 학교 3개소" },
+];
 const knowledgeLinks = [
   {
     title: "식물도감",
@@ -69,6 +76,7 @@ function findBestRoute(arboretum: Arboretum, visitTime: number, theme: string, c
 export default function BloomTrailApp() {
   const router = useRouter();
   const [keyword, setKeyword] = useState("");
+  const [operatorFilter, setOperatorFilter] = useState<(typeof operatorTypes)[number]>("전체");
   const [selectedArboretum, setSelectedArboretum] = useState(arboretums[0]);
   const [visitTime, setVisitTime] = useState(60);
   const [theme, setTheme] = useState("꽃");
@@ -83,13 +91,21 @@ export default function BloomTrailApp() {
 
   const filteredArboretums = useMemo(() => {
     const normalizedKeyword = keyword.trim().toLowerCase();
-    if (!normalizedKeyword) return arboretums;
 
     return arboretums.filter((arboretum) => {
+      if (operatorFilter !== "전체" && arboretum.operatorType !== operatorFilter) {
+        return false;
+      }
+
+      if (!normalizedKeyword) {
+        return true;
+      }
+
       const searchableText = [
         arboretum.name,
         arboretum.region,
         arboretum.description,
+        arboretum.operatorType,
         ...arboretum.themes,
         ...arboretum.aliases,
       ]
@@ -98,7 +114,7 @@ export default function BloomTrailApp() {
 
       return searchableText.includes(normalizedKeyword);
     });
-  }, [keyword]);
+  }, [keyword, operatorFilter]);
 
   const recommendedSpots = useMemo(() => {
     const sameTheme = selectedArboretum.spots.filter((spot) => spot.theme === theme);
@@ -182,10 +198,49 @@ export default function BloomTrailApp() {
       </section>
 
       <section className="panel search-panel" id="arboretum-search">
+        <div className="national-status">
+          <div>
+            <p className="section-label">National Arboretum Status</p>
+            <h2>전국 수목원 현황 기반 추천</h2>
+            <p>
+              e-나라지표의 산림청 수목원 현황을 참고해 국립·공립·사립·학교 수목원 분류와
+              국내 등록 수목원 규모를 서비스 맥락에 반영했습니다.
+            </p>
+          </div>
+          <a
+            className="source-link"
+            href="https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1307"
+            target="_blank"
+            rel="noreferrer"
+          >
+            e-나라지표 수목원 현황 보기
+          </a>
+        </div>
+        <div className="national-stat-grid">
+          {nationalStats.map((stat) => (
+            <article key={stat.label}>
+              <span>{stat.label}</span>
+              <strong>{stat.value}</strong>
+              <p>{stat.detail}</p>
+            </article>
+          ))}
+        </div>
         <div className="section-heading">
           <p className="section-label">Arboretum Search</p>
           <h2>국내 수목원 검색</h2>
           <p>이름, 지역, 테마로 검색할 수 있습니다. 예: 국립, 제주, 숲길, 온실, 가평</p>
+        </div>
+        <div className="operator-filter" aria-label="수목원 운영 유형 필터">
+          {operatorTypes.map((type) => (
+            <button
+              className={operatorFilter === type ? "active" : ""}
+              type="button"
+              key={type}
+              onClick={() => setOperatorFilter(type)}
+            >
+              {type}
+            </button>
+          ))}
         </div>
         <div className="search-control">
           <input
@@ -216,6 +271,7 @@ export default function BloomTrailApp() {
               <span className="card-kicker">{arboretum.sourceLabel}</span>
               <h3>{arboretum.name}</h3>
               <p className="card-region">{arboretum.region}</p>
+              <span className="operator-badge">{arboretum.operatorType} 수목원</span>
               <p>{arboretum.description}</p>
               <ul className="mini-highlight-list">
                 {arboretum.highlights.slice(0, 2).map((highlight) => (
@@ -244,6 +300,7 @@ export default function BloomTrailApp() {
         <p className="section-label">Selected Garden</p>
         <h2>{selectedArboretum.name}</h2>
         <p className="card-region">{selectedArboretum.region}</p>
+        <span className="operator-badge">{selectedArboretum.operatorType} 수목원</span>
         <p>{selectedArboretum.description}</p>
         <a className="source-link" href={selectedArboretum.sourceUrl} target="_blank" rel="noreferrer">
           참고 자료: {selectedArboretum.sourceLabel}
