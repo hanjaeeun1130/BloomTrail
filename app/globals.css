@@ -1,17 +1,21 @@
 :root {
-  --green-950: #102715;
-  --green-850: #1d4b27;
-  --green-700: #2f6a39;
-  --green-500: #72a64f;
-  --green-100: #eef7e7;
-  --gray-700: #5f626b;
-  --gray-100: #f3f4f2;
-  --ink: #141813;
-  --muted: #667066;
-  --line: #dde4d9;
+  --green-950: #0f2418;
+  --green-900: #173723;
+  --green-850: #1f4a30;
+  --green-700: #2f6f48;
+  --green-500: #6d9f5f;
+  --green-100: #eef6ef;
+  --green-50: #f7fbf7;
+  --cream: #fbfaf5;
+  --gray-700: #555f59;
+  --gray-100: #f4f6f2;
+  --ink: #162019;
+  --muted: #626f66;
+  --line: #dce5dd;
   --white: #ffffff;
-  --shadow: 0 18px 46px rgba(18, 46, 24, 0.12);
-  --soft-shadow: 0 8px 22px rgba(18, 46, 24, 0.08);
+  --shadow: 0 22px 54px rgba(14, 36, 24, 0.1);
+  --soft-shadow: 0 10px 26px rgba(14, 36, 24, 0.07);
+  --focus: 0 0 0 4px rgba(47, 111, 72, 0.16);
 }
 
 * {
@@ -27,7 +31,9 @@ body {
   color: var(--ink);
   font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   line-height: 1.6;
-  background: #f5f6f3;
+  background:
+    linear-gradient(180deg, var(--cream), #f3f7f1 42%, #f8faf6),
+    var(--cream);
 }
 
 a {
@@ -45,8 +51,8 @@ button {
 }
 
 .site-header {
-  background: var(--white);
-  border-bottom: 1px solid #e5e5e5;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--line);
 }
 
 .government-strip {
@@ -56,11 +62,11 @@ button {
   padding: 8px max(24px, calc((100vw - 1220px) / 2));
   color: var(--white);
   font-size: 0.92rem;
-  background: #62656d;
+  background: var(--green-900);
 }
 
 .navbar {
-  min-height: 112px;
+  min-height: 104px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -82,10 +88,10 @@ button {
   height: 58px;
   color: var(--white);
   font-weight: 900;
-  border-radius: 50%;
+  border-radius: 16px;
   background:
-    radial-gradient(circle at 62% 38%, var(--green-500) 0 24%, transparent 25%),
-    conic-gradient(from 220deg, #d7263d 0 34%, #ffffff 34% 48%, #0f5aa6 48% 82%, #ffffff 82% 100%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent),
+    var(--green-850);
   box-shadow: var(--soft-shadow);
 }
 
@@ -95,7 +101,7 @@ button {
 }
 
 .logo strong {
-  color: #4b4d53;
+  color: var(--green-950);
   font-size: 1.65rem;
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -113,10 +119,10 @@ button {
 }
 
 .primary-menu a {
-  color: #111;
-  font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+  color: var(--ink);
+  font-size: clamp(1.02rem, 1.55vw, 1.22rem);
   font-weight: 900;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
 }
 
 .primary-menu a:hover {
@@ -138,7 +144,7 @@ button {
   color: var(--green-850);
   font-size: 0.92rem;
   font-weight: 900;
-  border: 1px solid var(--line);
+  border: 1px solid #c8d8cc;
   border-radius: 999px;
   background: var(--white);
 }
@@ -157,16 +163,25 @@ button {
 
 .hero {
   position: relative;
-  min-height: 640px;
+  min-height: 620px;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
   padding: 0 max(24px, calc((100vw - 1220px) / 2)) 56px;
   color: var(--white);
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.24) 52%, rgba(0, 0, 0, 0.58)),
+    linear-gradient(90deg, rgba(7, 21, 13, 0.82), rgba(17, 45, 29, 0.42) 54%, rgba(7, 21, 13, 0.68)),
     url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=82")
       center / cover;
+}
+
+.hero::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 180px;
+  content: "";
+  background: linear-gradient(180deg, transparent, rgba(251, 250, 245, 0.96));
+  pointer-events: none;
 }
 
 .hero-brand-panel {
@@ -177,7 +192,8 @@ button {
   align-items: center;
   gap: 14px;
   padding: 16px 20px;
-  border-radius: 2px;
+  border: 1px solid rgba(220, 229, 221, 0.86);
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: var(--soft-shadow);
 }
@@ -189,8 +205,8 @@ button {
   height: 54px;
   color: var(--white);
   font-weight: 900;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #155aa7, #d92535 55%, var(--green-500));
+  border-radius: 14px;
+  background: var(--green-850);
 }
 
 .hero-brand-panel strong,
@@ -211,16 +227,19 @@ button {
 }
 
 .hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 720px;
-  padding: 26px 30px;
-  border-left: 6px solid var(--green-500);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);
+  padding: 30px 34px;
+  border-left: 6px solid #b8d4bd;
+  background: linear-gradient(90deg, rgba(8, 23, 14, 0.62), rgba(8, 23, 14, 0.14));
+  backdrop-filter: blur(2px);
 }
 
 .hero-label,
 .section-label {
   margin: 0 0 8px;
-  color: var(--green-500);
+  color: var(--green-700);
   font-size: 0.82rem;
   font-weight: 900;
   letter-spacing: 0.14em;
@@ -232,6 +251,10 @@ button {
   font-size: clamp(2.4rem, 5vw, 4.7rem);
   line-height: 1.08;
   letter-spacing: -0.055em;
+}
+
+.hero .hero-label {
+  color: #cae3ce;
 }
 
 .hero p:not(.hero-label) {
@@ -255,18 +278,31 @@ button {
   color: var(--white);
   font-weight: 900;
   border: 0;
-  border-radius: 2px;
+  border-radius: 8px;
   background: var(--green-850);
   box-shadow: var(--soft-shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.hero-button:hover,
+.recommend-button:hover,
+.save-button:hover,
+.auth-form button:hover,
+.arboretum-card button:hover,
+.search-control button:hover {
+  background: var(--green-700);
+  box-shadow: 0 14px 30px rgba(14, 36, 24, 0.14);
+  transform: translateY(-1px);
 }
 
 .hero-button {
   margin-top: 28px;
   color: var(--green-950);
-  background: var(--white);
+  background: #f5fbf4;
 }
 
 .hero-caption {
+  z-index: 1;
   position: absolute;
   right: max(24px, calc((100vw - 1220px) / 2));
   bottom: 42px;
@@ -282,9 +318,9 @@ button {
 .auth-card {
   width: min(1140px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 34px;
+  padding: 36px;
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: 14px;
   background: var(--white);
   box-shadow: var(--shadow);
 }
@@ -326,10 +362,11 @@ button {
 }
 
 .national-stat-grid article {
-  padding: 18px;
+  padding: 20px;
   border: 1px solid var(--line);
+  border-radius: 12px;
   background:
-    linear-gradient(180deg, rgba(238, 247, 231, 0.72), rgba(255, 255, 255, 0.92)),
+    linear-gradient(180deg, rgba(238, 246, 239, 0.84), rgba(255, 255, 255, 0.96)),
     var(--white);
 }
 
@@ -384,8 +421,10 @@ button {
   grid-template-columns: 1fr auto;
   gap: 10px;
   padding: 10px;
-  border: 3px solid var(--green-850);
-  background: var(--white);
+  border: 1px solid #bdd1c2;
+  border-radius: 12px;
+  background: var(--green-50);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
 .operator-filter {
@@ -400,7 +439,7 @@ button {
   padding: 0 15px;
   color: var(--green-850);
   font-weight: 900;
-  border: 1px solid #cddfc5;
+  border: 1px solid #c9dbce;
   border-radius: 999px;
   background: var(--white);
 }
@@ -418,12 +457,14 @@ button {
   padding: 0 18px;
   color: var(--ink);
   font-size: 1.1rem;
-  border: 0;
-  background: #f7f8f5;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--white);
 }
 
 .search-control input:focus {
-  outline: 3px solid rgba(47, 106, 57, 0.18);
+  outline: 0;
+  box-shadow: var(--focus);
 }
 
 .result-toolbar {
@@ -461,10 +502,21 @@ button {
   flex-direction: column;
   padding: 22px;
   border: 1px solid var(--line);
+  border-radius: 14px;
   background:
-    linear-gradient(180deg, rgba(238, 247, 231, 0.45), transparent 45%),
+    linear-gradient(180deg, rgba(238, 246, 239, 0.52), transparent 50%),
     var(--white);
   box-shadow: var(--soft-shadow);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.arboretum-card:hover,
+.spot-card:hover,
+.saved-route-card:hover,
+.knowledge-card:hover {
+  border-color: #b8cfbe;
+  box-shadow: 0 18px 40px rgba(14, 36, 24, 0.1);
+  transform: translateY(-2px);
 }
 
 .arboretum-card h3,
@@ -517,7 +569,7 @@ button {
   color: var(--green-850);
   font-size: 0.82rem;
   font-weight: 900;
-  border: 1px solid #cddfc5;
+  border: 1px solid #c9dbce;
   border-radius: 999px;
   background: var(--green-100);
 }
@@ -556,6 +608,9 @@ button {
 
 .selected-card {
   border-top: 6px solid var(--green-850);
+  background:
+    linear-gradient(180deg, rgba(238, 246, 239, 0.4), transparent 34%),
+    var(--white);
 }
 
 .source-link {
@@ -577,7 +632,8 @@ button {
 .detail-grid article {
   padding: 18px;
   border: 1px solid var(--line);
-  background: #f8fbf4;
+  border-radius: 12px;
+  background: var(--green-50);
 }
 
 .detail-grid span {
@@ -612,7 +668,7 @@ button {
   color: var(--green-850);
   font-size: 0.86rem;
   font-weight: 900;
-  border: 1px solid #cddfc5;
+  border: 1px solid #c9dbce;
   border-radius: 999px;
   background: var(--white);
 }
@@ -632,7 +688,8 @@ button {
 .zone-list div {
   padding: 14px;
   border-left: 4px solid var(--green-700);
-  background: #f7faf4;
+  border-radius: 10px;
+  background: var(--green-50);
 }
 
 .zone-list strong,
@@ -661,7 +718,8 @@ fieldset {
   gap: 10px;
   padding: 22px;
   border: 1px solid var(--line);
-  background: #f9faf6;
+  border-radius: 12px;
+  background: var(--green-50);
 }
 
 legend {
@@ -677,7 +735,7 @@ fieldset label {
   padding: 8px 13px;
   color: var(--green-850);
   font-weight: 900;
-  border: 1px solid #cddfc5;
+  border: 1px solid #c9dbce;
   border-radius: 999px;
   background: var(--white);
 }
@@ -695,7 +753,7 @@ fieldset label:has(input:checked) {
 
 .route-options {
   background:
-    linear-gradient(135deg, rgba(238, 247, 231, 0.62), rgba(255, 255, 255, 0.92)),
+    linear-gradient(135deg, rgba(238, 246, 239, 0.68), rgba(255, 255, 255, 0.96)),
     var(--white);
 }
 
@@ -708,6 +766,7 @@ fieldset label:has(input:checked) {
 .course-preview-grid article {
   padding: 18px;
   border: 1px solid var(--line);
+  border-radius: 12px;
   background: var(--white);
   box-shadow: var(--soft-shadow);
 }
@@ -741,7 +800,7 @@ fieldset label:has(input:checked) {
 
 .knowledge-panel {
   background:
-    linear-gradient(135deg, rgba(16, 39, 21, 0.04), rgba(238, 247, 231, 0.74)),
+    linear-gradient(135deg, rgba(15, 36, 24, 0.04), rgba(238, 246, 239, 0.8)),
     var(--white);
 }
 
@@ -762,6 +821,7 @@ fieldset label:has(input:checked) {
   min-height: 166px;
   padding: 20px;
   border: 1px solid var(--line);
+  border-radius: 12px;
   background: var(--white);
   box-shadow: var(--soft-shadow);
 }
@@ -784,14 +844,10 @@ fieldset label:has(input:checked) {
   margin: 10px 0 0;
 }
 
-.knowledge-card:hover {
-  border-color: var(--green-850);
-  transform: translateY(-2px);
-}
-
 .observation-note {
   padding: 22px;
   color: var(--white);
+  border-radius: 12px;
   background:
     linear-gradient(160deg, rgba(16, 39, 21, 0.94), rgba(47, 106, 57, 0.9)),
     var(--green-850);
@@ -820,6 +876,7 @@ fieldset label:has(input:checked) {
   color: var(--green-950);
   font-size: 1.08rem;
   font-weight: 900;
+  border-radius: 10px;
   background: var(--green-100);
   border-left: 5px solid var(--green-700);
 }
@@ -833,13 +890,13 @@ fieldset label:has(input:checked) {
   padding: 36px;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 2px;
+  border-radius: 14px;
   background:
     radial-gradient(circle at 18% 22%, rgba(114, 166, 79, 0.18), transparent 12rem),
     radial-gradient(circle at 84% 70%, rgba(47, 106, 57, 0.14), transparent 13rem),
     linear-gradient(90deg, rgba(47, 106, 57, 0.08) 1px, transparent 1px),
     linear-gradient(0deg, rgba(47, 106, 57, 0.08) 1px, transparent 1px),
-    #f6f9f2;
+    var(--green-50);
   background-size: auto, auto, 62px 62px, 62px 62px, auto;
 }
 
@@ -965,7 +1022,8 @@ fieldset label:has(input:checked) {
 .official-map-panel {
   overflow: hidden;
   border: 1px solid var(--line);
-  background: #f6f9f2;
+  border-radius: 14px;
+  background: var(--green-50);
   box-shadow: var(--soft-shadow);
 }
 
@@ -1023,13 +1081,21 @@ fieldset label:has(input:checked) {
   min-height: 54px;
   padding: 0 16px;
   border: 1px solid var(--line);
-  background: #f7f8f5;
+  border-radius: 8px;
+  background: var(--green-50);
+}
+
+.auth-form input:focus {
+  outline: 0;
+  box-shadow: var(--focus);
 }
 
 .form-message {
   margin-top: 14px;
   padding: 12px 14px;
   color: var(--green-950);
+  border: 1px solid #c9dbce;
+  border-radius: 10px;
   background: var(--green-100);
 }
 
@@ -1042,7 +1108,8 @@ fieldset label:has(input:checked) {
   grid-column: 1 / -1;
   padding: 24px;
   border: 1px dashed #b9cdb2;
-  background: #f8fbf4;
+  border-radius: 12px;
+  background: var(--green-50);
 }
 
 time {
